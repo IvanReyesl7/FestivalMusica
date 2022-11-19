@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/IvanReyesl7/FestivalMusica#readme",
   "devDependencies": {
+    "gulp": "^4.0.2",
     "sass": "^1.56.1"
   }
 }
