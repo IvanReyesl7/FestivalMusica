@@ -1,0 +1,8 @@
+@use "base/variables";
+
+
+h1{
+    color: variables.$rojo;
+    text-transform: uppercase;
+}
+
