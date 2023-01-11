@@ -37,6 +37,11 @@ function mostrarImagen(id){
         const overlay = document.createElement('div');
         overlay.appendChild(imagen);
         overlay.classList.add('overlay');
+        overlay.onclick = () =>{
+            const body = document.querySelector("body");
+            body.classList.remove('fijar-body');
+            overlay.remove();
+        }
 
         //Boton para cerrar el modal 
 
