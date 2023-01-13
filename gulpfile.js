@@ -3,6 +3,10 @@ const { src, dest, watch, parallel } = require("gulp");
 //css
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const postcss = require("gulp-postcss");
+const sourcemaps = require("gulp-sourcemaps");
 
 //imagenes
 const cache = require("gulp-cache");
@@ -10,11 +14,18 @@ const webp = require("gulp-webp");
 const imagemin = require("gulp-imagemin");
 const avif = require("gulp-avif");
 
+//JavaScript
+
+const terser = require("gulp-terser-js");
+
 function css(done){
     
     src('src/scss/**/*.scss')//identificar archivo sass
+        .pipe(sourcemaps.init())
         .pipe(plumber())
         .pipe(sass())//compilador
+        .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(sourcemaps.write("."))
         .pipe(dest("build/css"));//almacenar en disco duro
     
 
@@ -66,6 +77,7 @@ function versionAvif(done){
 
 function javascript(){
     src("src/js/**/*.js")
+        .pipe(terser())
         .pipe(dest("build/js"));
 }
 
